@@ -10,8 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
+
+    private DatabaseCommunicator databaseCommunicator;
+
+    private Button showMeasurementsButton;
+    private Button addMeasurementButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,29 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        databaseCommunicator = new DatabaseCommunicator();
+
+        showMeasurementsButton = (Button) findViewById(R.id.show_all_measurements_button);
+        addMeasurementButton = (Button) findViewById(R.id.add_new_measurement_button);
+
+        addListenersToButtons();
+    }
+
+    private void addListenersToButtons() {
+        showMeasurementsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        addMeasurementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseCommunicator.addMeasurement();
+
+                Toast.makeText(getApplicationContext(), "New Measurement Added!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
