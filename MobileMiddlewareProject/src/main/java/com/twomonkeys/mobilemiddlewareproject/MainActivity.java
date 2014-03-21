@@ -13,6 +13,8 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class MainActivity extends ActionBarActivity {
 
     private DatabaseCommunicator databaseCommunicator;
@@ -48,7 +50,8 @@ public class MainActivity extends ActionBarActivity {
         addMeasurementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseCommunicator.addMeasurement();
+                Measurement measurement = new Measurement(0,0,0,0,null); // TODO: add measurement data from the device and location data from google maps API
+                databaseCommunicator.addMeasurement(measurement);
 
                 Toast.makeText(getApplicationContext(), "New Measurement Added!", Toast.LENGTH_SHORT).show();
             }
