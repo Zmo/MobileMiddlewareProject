@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class MainActivity extends ActionBarActivity {
 
-    private DatabaseCommunicator databaseCommunicator;
+    private AsyncDatabaseCommunicator asyncDatabaseCommunicator;
 
     private Button showMeasurementsButton;
     private Button addMeasurementButton;
@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        databaseCommunicator = new DatabaseCommunicator();
+        asyncDatabaseCommunicator = new AsyncDatabaseCommunicator();
 
         showMeasurementsButton = (Button) findViewById(R.id.show_all_measurements_button);
         addMeasurementButton = (Button) findViewById(R.id.add_new_measurement_button);
@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Measurement measurement = new Measurement(0,0,0,0,null); // TODO: add measurement data from the device and location data from google maps API
-                databaseCommunicator.addMeasurement(measurement);
+                asyncDatabaseCommunicator.addMeasurement(measurement);
 
                 Toast.makeText(getApplicationContext(), "New Measurement Added!", Toast.LENGTH_SHORT).show();
             }
